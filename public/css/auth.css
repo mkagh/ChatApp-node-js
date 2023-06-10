@@ -1,0 +1,68 @@
+body {
+    background-image: url("../images/authBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body .wrapper {
+    width: 30%;
+    height: 50%;
+    min-height: 280px;
+    background-color: white;
+    margin-left: 4em;
+    border-radius: 12px;
+    padding: 35px 5px;
+}
+
+body .wrapper form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body .wrapper form div {
+    margin: 0.6em;
+    width: 100%;
+    text-align: center;
+}
+
+body .wrapper form div button {
+    border-radius: 32px;
+    padding: 10px 20px;
+    border: 1px springgreen solid;
+    background-color: springgreen;
+}
+
+body .wrapper form div button:hover {
+    background-color: rgb(175, 243, 209);
+}
+
+body .wrapper form div input {
+    width: 90%;
+    height: 35px;
+    border: none;
+    border-bottom: 1px solid springgreen;
+}
+
+body .wrapper form div input:focus {
+    outline: none;
+}
+
+body .wrapper form .link {
+    color: black;
+}
+
+body .wrapper form .link span {
+    color: blue;
+}
+
+/*# sourceMappingURL=style.css.map */

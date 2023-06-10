@@ -1,0 +1,351 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.wrapper aside {
+    background-color: #34ab45;
+    display: flex;
+    flex-direction: column;
+    width: 64px;
+    height: 100vh;
+}
+
+aside i {
+    color: white;
+}
+
+.wrapper aside div {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    margin: 15px auto !important;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+/* --------------------- */
+.aboutFriends {
+    width: 278px;
+    background-color: #f9f9f9;
+    position: relative;
+    border-right: 1px solid white;
+
+}
+
+.aboutFriends>div {
+    display: none;
+    overflow: hidden;
+}
+
+.myFriends {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+
+}
+
+.myFriends>div {
+    height: 70px;
+    width: 95%;
+    color: #34ab45;
+    margin: 12px auto;
+    border-radius: 12px;
+    background-color: white;
+    text-align: center;
+
+}
+
+.search-bar {
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+
+}
+
+.search-bar input {
+    height: 30px;
+    width: 90%;
+    outline: none;
+    margin: 16px 0;
+    position: relative;
+
+}
+
+.search-bar i {
+    position: absolute;
+    right: 7%;
+    top: 27px;
+
+}
+
+.searchedFriends {
+    text-align: center;
+}
+
+.searchedFriends>div {
+    height: 130px;
+    width: 95%;
+    background-color: #34ab45;
+    margin: 12px auto;
+    border-radius: 12px;
+}
+
+.sentRequests>div {
+    height: 70px;
+    width: 95%;
+    background-color: #34ab45;
+    margin: 12px auto;
+    border-radius: 12px;
+}
+
+.sent {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+
+
+
+.recivedRequests>div {
+    height: 70px;
+    width: 95%;
+    color: #34ab45;
+    margin: 12px auto;
+    border-radius: 12px;
+    background-color: white;
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #34ab45;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #87c78a;
+}
+
+.reject-button {
+    background-color: rgb(224, 71, 71);
+}
+
+.reject-button:hover {
+    background-color: rgb(247, 130, 130);
+}
+
+.settings {
+    text-align: center;
+    height: 100vh;
+
+}
+
+.settings div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings div button {
+    margin: 1em;
+    padding: 24px 48px;
+    border-radius: 12px;
+}
+
+
+.dark {
+    background-color: #444654;
+    color: white;
+    border: 1px solid white;
+
+}
+
+.dark:hover {
+    background-color: rgb(95, 95, 95);
+}
+
+.light {
+    background-color: white;
+    color: black;
+
+
+}
+
+.light:hover {
+    background-color: rgb(199, 199, 199);
+}
+
+/* =-----------------------------chatbox */
+.chatbox {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    flex-grow: 1;
+    width: 1px;
+
+
+
+}
+
+.chatingFriend {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px #f3f3f3 solid;
+}
+
+.chatingFriend p {
+    color: #34ab45;
+    font-weight: 600;
+    margin-left: 1em;
+    font-size: 22px;
+}
+
+.typeMessage {
+    display: flex;
+    justify-content: space-between;
+    height: 95px;
+    border-top: 1px solid #f3f3f3;
+
+}
+
+.typeMessage input {
+    border: none;
+    outline: none;
+    width: 90%;
+    font-size: 20px;
+
+
+}
+
+.send-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.send-button button {
+    padding: 14px 28px;
+    border-radius: 4px;
+}
+
+/* -------------------classes for adding */
+.red {
+    background-color: #34ab45;
+    color: white;
+    margin: 25px 40px;
+    margin-left: 40%;
+    border-radius: 12px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.blue {
+    color: blue;
+    background-color: #f3f3f3;
+    color: #444654;
+    border-radius: 12px;
+    margin: 25px 40px;
+    padding: 0 10px;
+    margin-right: 40%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+
+}
+
+.messages-box {
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    height: 1px;
+
+}
+
+
+
+#myFriends:hover::after,
+#search-bar:hover::after,
+#sentRequests:hover::after,
+#recivedRequests:hover::after,
+#logout:hover::after,
+#settings:hover::after {
+    content: "my friends";
+    position: absolute;
+    top: -10px;
+
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+    color: black;
+}
+
+#search-bar:hover::after {
+    content: "search-bar";
+
+}
+
+#sentRequests:hover::after {
+    content: "sent";
+
+}
+
+#recivedRequests:hover::after {
+    content: "recieved";
+
+}
+
+#logout:hover::after {
+    content: "logout";
+
+}
+
+#settings:hover::after {
+    content: "settings";
+
+}
+
+.white {
+    background-color: white;
+    color: black;
+}
+
+.black {
+    background-color: #444654;
+    color: white;
+
+}

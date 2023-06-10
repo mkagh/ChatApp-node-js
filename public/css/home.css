@@ -1,0 +1,42 @@
+body {
+    background-image: url("../images/authBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+span {
+    color: springgreen;
+}
+
+div {
+    text-align: center;
+}
+
+button {
+    border-radius: 32px;
+    padding: 10px 20px;
+    border: 1px springgreen solid;
+    background-color: springgreen;
+    margin: 2em;
+}
+
+button:hover {
+    background-color: #9bf8b2;
+
+}
+
+p {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
