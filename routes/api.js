@@ -10,5 +10,4 @@ router.route("/chat").get(getOneChat).patch(addMessageToChat)
 
 router.route("/:id").get(getUserToPatch).patch(patchRecivedRequests)
 
-
 module.exports = router

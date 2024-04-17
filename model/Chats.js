@@ -6,7 +6,6 @@ const ChatsShema = new mongoose.Schema({
     },
     chat: {
         type: Array,
-
     }
 })
 

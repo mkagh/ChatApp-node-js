@@ -15,17 +15,13 @@ const ConfigRegister = (passport) => {
                 if (password !== req.body.confirmPassword) {
                     return done(null, false, { message: 'Passwords do not match.' });
                 }
-
                 if (password.length < 6) {
                     return done(null, false, { message: 'Password must be at least 6 characters long.' });
                 }
-
                 const existingUser = await Users.findOne({
                     $or: [{ username: username }, { email: req.body.email }]
                 });
-
                 if (existingUser) {
-
                     return done(null, false, { message: 'Username or email already exists.' });
                 }
                 const hashedPassword = await bcrypt.hash(password, 10);
@@ -58,7 +54,6 @@ const ConfigRegister = (passport) => {
     })
 };
 
-
 const ConfigLogin = (passport) => {
     passport.use(
         new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
@@ -71,7 +66,8 @@ const ConfigLogin = (passport) => {
                         if (err) throw err;
                         if (isMatch) {
                             return done(null, user);
-                        } else {
+                        } 
+                        else {
                             return done(null, false, { message: 'Password incorrect' });
                         }
                     });

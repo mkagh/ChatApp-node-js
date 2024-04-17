@@ -1,9 +1,8 @@
 const nameSpan = document.querySelector("span")
-
 let id;
+
 window.addEventListener("load", async () => {
     try {
-
         const person = await axios.get("/api/v1/user")
         nameSpan.innerHTML = person.data.username
         console.log(person)

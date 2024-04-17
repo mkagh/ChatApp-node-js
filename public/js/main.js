@@ -1,4 +1,3 @@
-
 const aside = document.querySelector('aside');
 const asideDivs = aside.querySelectorAll('div:not(.logo):not(#logout)');
 const aboutFriends = document.querySelectorAll('.aboutFriends>div');
@@ -27,7 +26,6 @@ asideDivs.forEach((div) => {
     })
 })
 
-
 const search = document.querySelector(".search-bar input")
 const searchedusers = document.querySelector(".searchedFriends")
 let user;
@@ -41,28 +39,26 @@ window.addEventListener("load", async () => {
         const recievedrequests = user.data.recieved
         const friendsList = user.data.friends
         const sentrequests = user.data.sent
-
         sentRequests.innerHTML = sentrequests.map((request) => {
             return `  <div class="sent">
             <p>${request}</p>
-    </div>`
+            </div>`
         }).join(" ")
-
         recievedRequests.innerHTML = recievedrequests.map((request) => {
             return `  <div class="request">
             <p>${request}</p>
             <div class="decider">
-  <button onclick=acceptFriend(this)>accept</button>
-                <button class="reject-button" onclick=rejectFriend(this)>reject</button>
+            <button onclick=acceptFriend(this)>accept</button>
+             <button class="reject-button" onclick=rejectFriend(this)>reject</button>
             </div>
         </div>`
         }).join(" ")
 
         myFriends.innerHTML = friendsList.map((friend) => {
-            return `   <div class="friend">
+            return `<div class="friend">
                  <p>${friend}</p>
                  <button onclick=openChat(this)>chat</button>
-             </div>`
+                 </div>`
         }).join(" ")
 
         const index = allusers.findIndex(obj => obj.username == user.data.username);
@@ -74,11 +70,9 @@ window.addEventListener("load", async () => {
 })
 
 search.addEventListener("input", () => {
-
     let searchedUsers = allusers.filter((oneuser) => {
         return oneuser.username.includes(search.value) && !user.data.friends.includes(oneuser.username) && !user.data.recieved.includes(oneuser.username) && !user.data.sent.includes(oneuser.username)
     })
-
     if (search.value === '') {
         searchedUsers = []
     }
@@ -96,24 +90,18 @@ const addFriend = async (element) => {
         const username = div.querySelector("p").innerText
         element.disabled = true
         const userToGetRequset = await axios.get(`/api/v1/${username}`)
-
         if (userToGetRequset.data.msg) {
             div.innerHTML = userToGetRequset.data.msg
         }
-
         const usersUsername = user.data.username
         let requests = userToGetRequset.data.recieved
         const recieved = requests.concat(usersUsername);
-
         let userToChangeSent = await axios.get(`/api/v1/${user.data.username}`)
         let sents = userToChangeSent.data.sent
         let sent = sents
-
         sent.push(username);
-
         const friendRecieves = await axios.patch(`/api/v1/${username}`, { recieved })
         const friendsYouSentTo = await axios.patch(`/api/v1/${user.data.username}`, { sent })
-
         const index = allusers.findIndex(obj => obj.username == username);
         allusers.splice(index, 1)
         div.remove()
@@ -121,8 +109,6 @@ const addFriend = async (element) => {
     catch (err) {
         console.log(err)
     }
-
-
 }
 
 const acceptFriend = async (element) => {
@@ -133,47 +119,41 @@ const acceptFriend = async (element) => {
     element.disabled = true
 
     const mainUser = await axios.get(`/api/v1/${username}`)
-
     let friendsArrayFromDB = mainUser.data.friends
     let recievedArrayFromDB = mainUser.data.recieved
-
     let friends = friendsArrayFromDB.concat(userWhoSent);
     const recieved = recievedArrayFromDB.filter((item) => {
         return item !== userWhoSent
     });
-    const updateFriends = await axios.patch(`/api/v1/${username}`, { friends, recieved })
 
+    const updateFriends = await axios.patch(`/api/v1/${username}`, { friends, recieved })
     username = userWhoSent
+
     const friend = await axios.get(`/api/v1/${username}`)
     let friendArr = friend.data.friends
     friends = friendArr.concat(user.data.username)
     let sentArr = friend.data.sent
-
     const sent = sentArr.filter((item) => {
         return item !== user.data.username
     });
 
     const updateFriendsFriends = await axios.patch(`/api/v1/${username}`, { friends, sent })
-
 }
 
 const openChat = async (element) => {
-
     participants = []
-
     const closestDiv = element.closest("div")
     const friendToChatWith = closestDiv.querySelector("p").innerText
-
     chatbox.innerHTML = `
-    <div class="chatingFriend">
+        <div class="chatingFriend">
           <p>${friendToChatWith}</p>
         </div>
         <div style="flex-grow: 1"  class="messages-box">
-      </div>
+        </div>
         <div class="typeMessage">
               <input class="${inputColor ? 'white' : 'black'}"  placeholder="type message here..." type="text">
- <div class="send-button">
-         <button onclick=sendMessage(this)>send</button>
+            <div class="send-button">
+               <button onclick=sendMessage(this)>send</button>
             </div>
         </div>`
     participants.push(friendToChatWith)
@@ -183,26 +163,21 @@ const openChat = async (element) => {
     try {
         const getAllChats = await axios.get("/api/v1/chats")
         let allParticipantsInDb = []
-
         if (getAllChats.data) {
             everyChat = getAllChats.data.allChats
             everyChat.forEach((chat) => {
                 return allParticipantsInDb.push(chat.participants)
             })
         }
-
         let findingMatch = allParticipantsInDb.find(subArray => {
             return JSON.stringify(subArray) === JSON.stringify(participants);
         })
         const isThereMatch = Boolean(findingMatch)
-
         if (!isThereMatch) {
             const populateChats = axios.post("/api/v1/chats", { participants })
         }
-
         const getOneChat = await axios.get(`/api/v1/chat?participants=${participants}`)
         const oneChat = getOneChat.data.oneChat.chat
-
         const addChat = oneChat.map((item) => {
             const itemName = item.slice(0, user.data.username.length)
             const justMessage = item.slice(user.data.username.length + 2)//+2 is to remove :
@@ -214,27 +189,20 @@ const openChat = async (element) => {
     catch (err) {
         console.log(err)
     }
-
-
-
 }
 
 const sendMessage = async (element) => {
     element.disabled = true
-
     try {
         const secondClosestDiv = element.closest("div").parentElement
         const message = secondClosestDiv.querySelector("input").value
         const getOneChat = await axios.get(`/api/v1/chat?participants=${participants}`)
         let chat = getOneChat.data.oneChat.chat
         if (message !== "") {
-
             let myMessage = `${user.data.username} : ${message}`
             chat.push(myMessage)
-
             const addMessageToChat = await axios.patch("/api/v1/chat", { participants, chat })
             const getOneChatAgain = await axios.get(`/api/v1/chat?participants=${participants}`)
-
             const chatAgain = getOneChatAgain.data.oneChat.chat
             const addChat = chatAgain.map((item) => {
                 const itemName = item.slice(0, user.data.username.length)
@@ -244,25 +212,25 @@ const sendMessage = async (element) => {
             messagesBox.innerHTML = addChat
         }
         element.disabled = false
-
     } catch (err) {
         console.log(err)
     }
 }
+
 const rejectFriend = async (element) => {
     const secondClosestDiv = element.closest("div").parentElement
     const friendWhoSent = secondClosestDiv.querySelector("p").innerText
     const username = user.data.username
     element.disabled = true
+
     const getToPatch = await axios.get(`/api/v1/${username}`)
-
     let recievedArrayFromDB = getToPatch.data.recieved
-
     const recieved = recievedArrayFromDB.filter((item) => {
         return item !== friendWhoSent
     });
 
     const updateRecievedReqs = await axios.patch(`/api/v1/${username}`, { recieved })
+    
     const getFriendwhoSent = await axios.get(`/api/v1/${friendWhoSent}`)
 
     let sentArrayFromDB = getFriendwhoSent.data.sent
@@ -270,7 +238,6 @@ const rejectFriend = async (element) => {
         return item !== user.data.username
     });
     const updateSents = await axios.patch(`/api/v1/${friendWhoSent}`, { sent })
-
 }
 
 const darkMode = document.querySelector(".dark")
@@ -284,7 +251,6 @@ darkMode.addEventListener("click", () => {
     inputColor = false
     typeMessageInput.style.background = "#444654"
     typeMessageInput.style.color = "white"
-
 })
 
 lightMode.addEventListener("click", () => {
@@ -294,6 +260,5 @@ lightMode.addEventListener("click", () => {
     inputColor = true
     typeMessageInput.style.background = "white"
     typeMessageInput.style.color = "#444654"
-
 })
 

@@ -6,5 +6,4 @@ const { ensureAuthenticated } = require('../config/auth');
 router.route("/").get(ensureAuthenticated, getHomePage)
 router.route("/:id").get(ensureAuthenticated, getMyProfilePage)
 
-
 module.exports = router
